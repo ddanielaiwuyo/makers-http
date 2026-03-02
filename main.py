@@ -1,10 +1,18 @@
 from dataclasses import asdict
 from flask import Flask, Request, Response, jsonify, request
-from entities.Artist import Artist, get_all_artists
+from entities.Artist import Artist
+from lib.artist_repository import ArtistRepository
+from lib.database_connection import DatabaseConnection
 
 app = Flask(__name__)
 
 MAX_PAYLOAD = 1500
+
+DB_CONN = DatabaseConnection()
+DB_CONN.connect()
+DB_CONN.seed()
+
+artist_repo = ArtistRepository(DB_CONN)
 
 def handle_post_request(req: Request) -> Response:
     print("handling post request")
@@ -20,8 +28,8 @@ def handle_post_request(req: Request) -> Response:
         response = jsonify({"status_code": 400, "status": "Bad request"})
         return response
 
-    print("query params extracted")
-    print(artist_name, genre)
+    artist = Artist(None, artist_name, genre)
+    artist_repo.create(artist)
     response = jsonify({"status_code": 201, "status": "OK"})
     return response
 
@@ -30,7 +38,7 @@ def handle_artists():
     if request.method == "POST":
         return handle_post_request(request)
 
-    all_artists = get_all_artists(4)
-    res_body = [asdict(artist) for artist in all_artists]
-    return jsonify(res_body)
+    db_response = artist_repo.get_all()
+    db_response = [asdict(artist) for artist in db_response]
+    return jsonify(db_response)
 
