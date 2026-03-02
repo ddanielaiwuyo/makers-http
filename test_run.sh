@@ -1,6 +1,13 @@
 #!/usr/bin/env zsh
 
-
+# If you'd want to automate your workflow
+# you can use this script I made 
+# It uses koko, a lightweight http tool like curl
+# but is paired with jq, bat and other pages for
+# handling different kinds of responses from server
+# You can check it out at https://github.com/persona-mp3/koko
+# And then you can follow the instructions for installing it
+# If you'd want more features or anything to update let me know
 flask --app main run & 
 flask_id=$!
 

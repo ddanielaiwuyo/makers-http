@@ -22,7 +22,7 @@ After installation you can then create the database the application is expecting
 And then when you access  your psql shell, run the following:
 
 ```bash
-create table http_challenge_1;
+create database http_challenge_1;
 \c http_challenge_1;
 ```
 
