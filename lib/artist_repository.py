@@ -26,8 +26,5 @@ class ArtistRepository:
         INSERT INTO artists (name, genre)
         VALUES(%s, %s);
         """
-
-
         params = [artist.name, artist.genre]
-
         self.conn.execute(query, params)

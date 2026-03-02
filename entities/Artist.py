@@ -13,7 +13,6 @@ class Album:
 @dataclass
 class Artist:
     """Represents artist entity in database"""
-
     id: int
     name: str
     genre: str
