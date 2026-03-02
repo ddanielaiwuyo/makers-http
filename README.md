@@ -28,7 +28,7 @@ create table http_challenge_1;
 
 You can skip this part below by simply pasting the contents of `setup.sh` into
 your terminal. It simply clones the repo for you, sets up the dependecies
-and environment and shows how to run the app in 2 steps
+and environment and shows how to run the app in 2 steps.
 
 ### Cloning repository
 ```bash
@@ -43,9 +43,20 @@ python3 -m venv env && source ./env/bin/activate
 pip install -r requirements.txt
 ```
 
-### Run Program
+### Run Server
 ```bash
 flask --app main run
+```
+
+
+## Run Client
+In another terminal, run this:
+```bash
+curl http://localhost:5000/artists # sends a get requests for all the artists in the db
+
+# makes a post request to create an artist called Mass Of The Fermenting Dregss using
+# using query params
+curl -X http://localhost:5000/artists?name="Mass+Of+The+Fermenting+Dregss"&genre="Rock"
 ```
 
 
