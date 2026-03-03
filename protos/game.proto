@@ -1,0 +1,42 @@
+syntax = "proto3";
+package proto;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "pac/protos";
+
+message Packet {
+  int32 From = 1;
+  int32 Dest = 2;
+
+  oneof Payload {
+    PaintMessage paint = 3;
+    ChatMessage chat = 4;
+    GameMessage game = 5;
+    NewGameMessage newGame = 6;
+  }
+
+  google.protobuf.Timestamp last_updated = 7;
+}
+
+message ChatMessage {
+  string Content = 1;
+}
+
+message User {
+  string Username = 1;
+  int32 Id = 2;
+}
+
+message PaintMessage {
+  repeated User ConnectedUsers = 1;
+}
+
+message GameMessage {
+  string SSID = 1;
+  string Play = 2;
+}
+
+message NewGameMessage {
+  int32 From  = 1;
+  int32 Dest = 2;
+}
