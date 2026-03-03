@@ -1,5 +1,5 @@
 from datetime import datetime
-from entities.Artist import Artist, Album
+from entities.artist import Artist, Album
 
 class ArtistRepository:
     def __init__(self, db_conn):
@@ -15,7 +15,7 @@ class ArtistRepository:
         all_artists = []
         for row in response:
             artist = Artist(row["artist_id"], row["name"], row["genre"])
-            album = Album(row["album_id"],row["title"], row["release_year"].isoformat())
+            album = Album(row["album_id"],row["title"], row["release_year"].isoformat(), row["artist_id"])
             artist.albums = [album]
             all_artists.append(artist)
 

@@ -60,4 +60,15 @@ curl -X http://localhost:5000/artists?name="Mass+Of+The+Fermenting+Dregss"&genre
 ```
 
 
+## Run Tests:
+To run the tests, you need to expose your current working directory to python's interpreter PATH
+especially for module resolutions
+```bash
+export PYTHONPATH="$PWD"
+
+# And now you can run pytest
+pytest
+```
+
+
 ## For more information on Flask, read their documentation [Flask's Docs](https://flask.palletsprojects.com/en/stable/)
