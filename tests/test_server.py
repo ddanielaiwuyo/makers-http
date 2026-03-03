@@ -43,7 +43,6 @@ def expected_post_res():
 
     res = [artist_1, artist_2, artist_3, artist_4, artist_5]
     res = [asdict(artist) for artist in res]
-    print("as dict-res", res)
     return res
 
 
@@ -65,7 +64,6 @@ def test_post_artist(web_client, db_conn, expected_post_res, expected_get_res):
 
     assert response.status_code == 201
 
-    print("slept")
     post_response = web_client.get("/artists")
     assert post_response.status_code == 200
     assert post_response.get_json() == expected_post_res
