@@ -6,16 +6,25 @@ class ArtistRepository:
         self.conn = db_conn
 
     def get_all(self) -> list[Artist]:
+        # to avoid double column  names
         query = """
-        select * from artists
+        select  
+            artists.artist_id AS artist_id,
+            artists.name AS name,
+            artists.genre,
+            albums.album_id,
+            albums.title,
+            albums.release_year 
+        from artists
         left join albums
-        on albums.artist_id = artists.artist_id
+        on artists.artist_id = albums.artist_id
         """
         response = self.conn.execute(query)
         all_artists = []
         for row in response:
             artist = Artist(row["artist_id"], row["name"], row["genre"])
-            album = Album(row["album_id"],row["title"], row["release_year"].isoformat(), row["artist_id"])
+            release_year = row["release_year"].isoformat() if row["release_year"] is not None else None
+            album = Album(row["album_id"],row["title"], release_year, row["artist_id"])
             artist.albums = [album]
             all_artists.append(artist)
 
