@@ -97,7 +97,7 @@ func StartServer() {
 				messageLength := binary.BigEndian.Uint32(header)
 
 				response_packet := make([]byte, messageLength)
-				var msg *pb.Packet
+				var msg  = &pb.Packet{}
 				out, err := conn.Read(response_packet)
 				if err != nil {
 					log.Println("error reading from client", err)
