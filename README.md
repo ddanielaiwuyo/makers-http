@@ -26,9 +26,16 @@ create database http_challenge_1;
 \c http_challenge_1;
 ```
 
-You can skip this part below by simply pasting the contents of `setup.sh` into
-your terminal. It simply clones the repo for you, sets up the dependecies
+You can skip this part below by simply run the `setup.sh` in your terminal.
+It simply clones the repo for you, sets up the dependecies
 and environment and shows how to run the app in 2 steps.
+
+```
+# after copying the file
+chmod u+x setup.sh # gives you permissions to execute unless you're not `sudo`
+
+./setup.sh
+```
 
 ### Cloning repository
 ```bash

@@ -1,4 +1,5 @@
 #!/usr/bin/env zsh
+
 set -e
 
 target_dir="$HOME/makers_http"
