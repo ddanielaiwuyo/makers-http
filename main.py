@@ -26,6 +26,7 @@ def get_artists():
 def create_artist():
     if request.content_length and request.content_length >= MAX_PAYLOAD:
         response = jsonify({"status_code": 418, "status": "I am a teapot"})
+        response.status_code = 418
         return response
 
     artist_name = request.args.get("name")
@@ -33,6 +34,7 @@ def create_artist():
     
     if artist_name is None or genre is None:
         response = jsonify({"status_code": 400, "status": "Bad request"})
+        response.status_code = 400
         return response
 
     artist = Artist(None, artist_name, genre)
